@@ -11,7 +11,7 @@
             data on each refresh. -->
 
 
-            <!-- 
+<!-- 
             Manufacturer:
             1. name
             2. country 3 letter code
@@ -19,3 +19,111 @@
             4. short description. A brief paragraph regarding the manufacturer
             5. description. A more detailed description of the manufacture and the process  etc.
              -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturer</title>
+    <script>
+    var manufacturers = [];
+    
+        function addmanufacturer() {
+           
+            var mnfid = document.getElementById("mnfid").value;
+            manufacturers.push(mnfid);
+            manufacturers.sort();//sort
+            var body = document.getElementById("manufacturerTableBody");
+            body.innerHTML= "";//remove previous rows
+           
+
+            for (var i = 0; i < manufacturers.length; i++) {
+                var row = document.createElement("tr");
+                var cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i];
+                body.appendChild(row);
+                row.appendChild(cell);
+            }
+
+            //reset input box
+            document.getElementById("mnfid").value = "";
+        }
+     
+    </script>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label>Id:</label>
+            <input type="number" name="mnfid" id="mnfid">
+        </div>
+
+
+        <div>
+            <label>Name:</label>
+            <input type="text" name="mnfName" id="mnfName" />
+        </div>
+
+
+        <div>
+            <label>Country Code:</label>
+            <input type="text" name="mnfCountryCodeName" id="mnfCountryCodeName" />
+        </div>
+
+
+        <div>
+            <label>Link:</label>
+            <input type="text" name="mnfLink" id="mnfLink" />
+        </div>
+
+
+        <div>
+            <label>Description:</label>
+            <input type="text" name="mnfDescription" id="mnfDescription" />
+        </div>
+
+
+        <div>
+            <label>More Description:</label>
+            <input type="text" name="mnfMoreDescription" id="mnfMoreDescription" />
+        </div>
+        <div><input type="button" value="Add" onclick="addmanufacturer();" />
+            <input type="button" value="Refresh" />
+            <input type="button" value="Search" />
+        </div>
+
+    </form>
+
+    <table border="1" id="manufacturerTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Country Code</th>
+                <th>Link</th>
+                <th>Description</th>
+                <th>More Description</th>
+            </tr>
+        </thead>
+        <tbody id="manufacturerTableBody">
+
+        </tbody>
+
+    </table>
+    <script>
+        // //var mnfid = window.prompt("What is your name");
+        // var mnfid = document.getElementById("mnfid").value;
+        // var body = document.getElementById("manufacturerTableBody");
+        // var row = document.createElement("tr");
+        // var cell = document.createElement("td");
+        // cell.innerHTML = mnfid;
+        // body.appendChild(row);
+        // row.appendChild(cell);
+
+    </script>
+</body>
+
+</html>
