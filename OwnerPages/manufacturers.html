@@ -28,17 +28,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manufacturer</title>
     <script>
-    var manufacturers = [];
-    
+        var manufacturers = [];
+
         function addmanufacturer() {
-           
+            getANewManufacturer()
+            sortingOfManufacturer()
+            displayManufacturer()
+            resetDataEntryFields()
+        }
+
+        function getANewManufacturer() {
             var mnfid = document.getElementById("mnfid").value;
             manufacturers.push(mnfid);
-            manufacturers.sort();//sort
-            var body = document.getElementById("manufacturerTableBody");
-            body.innerHTML= "";//remove previous rows
-           
+        }
 
+        function sortingOfManufacturer() {
+            manufacturers.sort();//sort
+        }
+        function resetDataEntryFields() {
+                document.getElementById("mnfid").value = "";
+
+            }
+
+        function displayManufacturer() {
+            var body = document.getElementById("manufacturerTableBody");
+            body.innerHTML = "";//remove previous row             
             for (var i = 0; i < manufacturers.length; i++) {
                 var row = document.createElement("tr");
                 var cell = document.createElement("td");
@@ -47,10 +61,9 @@
                 row.appendChild(cell);
             }
 
-            //reset input box
-            document.getElementById("mnfid").value = "";
+        
         }
-     
+
     </script>
 </head>
 
