@@ -39,14 +39,33 @@
 
         function getANewManufacturer() {
             var mnfid = document.getElementById("mnfid").value;
-            manufacturers.push(mnfid);
+            var mnfName = document.getElementById("mnfName").value;
+            var mnfCountryCodeName = document.getElementById("mnfCountryCodeName").value;
+            var mnfLink = document.getElementById("mnfLink").value;
+            var mnfDescription = document.getElementById("mnfDescription").value;
+            var mnfMoreDescription = document.getElementById("mnfMoreDescription").value;
+                manufacturer = {
+                    id : mnfid,
+                    name : mnfName,
+                    countryCodeName : mnfCountryCodeName,
+                    link : mnfLink,
+                    description : mnfDescription,
+                    moreDescription : mnfMoreDescription,
+                };
+
+            manufacturers.push(manufacturer);
         }
 
         function sortingOfManufacturer() {
             manufacturers.sort();//sort
         }
         function resetDataEntryFields() {
-                document.getElementById("mnfid").value = "";
+            document.getElementById("mnfid").value = "";
+            document.getElementById("mnfName").value = "";
+            document.getElementById("mnfCountryCodeName").value = "";
+            document.getElementById("mnfLink").value = "";
+            document.getElementById("mnfDescription").value = "";
+            document.getElementById("mnfMoreDescription").value = "";
 
             }
 
@@ -55,10 +74,34 @@
             body.innerHTML = "";//remove previous row             
             for (var i = 0; i < manufacturers.length; i++) {
                 var row = document.createElement("tr");
+
+
                 var cell = document.createElement("td");
-                cell.innerHTML = manufacturers[i];
-                body.appendChild(row);
+                cell.innerHTML = manufacturers[i].id;
                 row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].name;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].countryCodeName;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].link;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].description;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = manufacturers[i].moreDescription;
+                row.appendChild(cell);
+
+
+                body.appendChild(row);
             }
 
         
