@@ -1,3 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothes</title>
+    <script>
+        var clothes = [];
+
+        function addcloth() {
+            getANewcloth()
+            sortingOfcloth()
+            displaycloth()
+            resetDataEntryFields()
+        }
+        function compareclothes(a,b){
+            if (a.id<b.id) return -1;
+            if (a.id>b.id) return 1; 
+            // in case of equality 
+            if (a.name<b.name) return -1;
+            if (a.name>b.name) return 1; 
+
+            return 0;
+
+        }
+
+        function getANewcloth() {
+            var clothid = document.getElementById("clothid").value;
+            var clothName = document.getElementById("clothName").value;
+            var clothimageFilename = document.getElementById("clothimageFilename").value;
+            var manufacturerId = document.getElementById("manufacturerId").value;
+            var clothDescription = document.getElementById("clothDescription").value;
+            var clothMoreDescription = document.getElementById("clothMoreDescription").value;
+                cloth = {
+                    id : clothid,
+                    code : clothName,
+                    image_filename : clothimageFilename,
+                    manufacturer_id : manufacturerId,
+                    short_description : clothDescription,
+                    more_description : clothMoreDescription,
+                };
+
+            clothes.push(cloth);
+        }
+
+        function sortingOfcloth() {
+            clothes.sort(compareclothes);//sort
+        }
+        function resetDataEntryFields() {
+            document.getElementById("clothid").value = "";
+            document.getElementById("clothName").value = "";
+            document.getElementById("clothimageFilename").value = "";
+            document.getElementById("manufacturerId").value = "";
+            document.getElementById("clothDescription").value = "";
+            document.getElementById("clothMoreDescription").value = "";
+
+            }
+
+        function displaycloth() {
+            var body = document.getElementById("clothTableBody");
+            body.innerHTML = "";//remove previous row             
+            for (var i = 0; i < clothes.length; i++) {
+                var row = document.createElement("tr");
+
+
+                var cell = document.createElement("td");
+                cell.innerHTML = clothes[i].id;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = clothes[i].code;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = clothes[i].image_filename;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = clothes[i].manufacturer_id;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = clothes[i].short_description;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = clothes[i].more_description;
+                row.appendChild(cell);
+
+
+                body.appendChild(row);
+            }
+
+        
+        }
+
+    </script>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label>Id:</label>
+            <input type="number" name="clothid" id="clothid">
+        </div>
+
+
+        <div>
+            <label>Code:</label>
+            <input type="number" name="clothName" id="clothName" />
+        </div>
+
+
+        <div>
+            <label>Image:</label>
+            <input type="text" name="clothimageFilename" id="clothimageFilename" />
+        </div>
+
+
+        <div>
+            <label>Manufacturer Id:</label>
+            <input type="number" name="manufacturerId" id="manufacturerId" />
+        </div>
+
+
+        <div>
+            <label>Description:</label>
+            <input type="text" name="clothDescription" id="clothDescription" />
+        </div>
+
+
+        <div>
+            <label>More Description:</label>
+            <input type="text" name="clothMoreDescription" id="clothMoreDescription" />
+        </div>
+        <div><input type="button" value="Add" onclick="addcloth();" />
+            <input type="button" value="Refresh" />
+            <input type="button" value="Search" />
+        </div>
+
+    </form>
+
+    <table border="1" id="clothTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Image</th>
+                <th>Manufacturer</th>
+                <th>Description</th>
+                <th>More Description</th>
+            </tr>
+        </thead>
+        <tbody id="clothTableBody">
+
+        </tbody>
+
+    </table>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- 
 1. The list of entries
 2. The ability to add a new entry
