@@ -39,7 +39,7 @@
         function comparemanufacturer(a,b){
             if (a.id<b.id) return -1;
             if (a.id>b.id) return 1; 
-// in case of equality 
+            // in case of equality 
             if (a.name<b.name) return -1;
             if (a.name>b.name) return 1; 
 
@@ -57,10 +57,10 @@
                 manufacturer = {
                     id : mnfid,
                     name : mnfName,
-                    countryCodeName : mnfCountryCodeName,
+                    country_code : mnfCountryCodeName,
                     link : mnfLink,
                     description : mnfDescription,
-                    moreDescription : mnfMoreDescription,
+                    more_description : mnfMoreDescription,
                 };
 
             manufacturers.push(manufacturer);
@@ -95,7 +95,7 @@
                 row.appendChild(cell);
 
                 var cell = document.createElement("td");
-                cell.innerHTML = manufacturers[i].countryCodeName;
+                cell.innerHTML = manufacturers[i].country_code;
                 row.appendChild(cell);
 
                 var cell = document.createElement("td");
@@ -107,7 +107,7 @@
                 row.appendChild(cell);
 
                 var cell = document.createElement("td");
-                cell.innerHTML = manufacturers[i].moreDescription;
+                cell.innerHTML = manufacturers[i].more_description;
                 row.appendChild(cell);
 
 

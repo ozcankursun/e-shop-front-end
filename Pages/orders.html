@@ -11,10 +11,168 @@
             data on each refresh. -->
 
 
-            <!-- 
+<!-- 
             Order:
             1. order date
             2. cloth
             3. quantity
             4. customer code (10 character string). -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <script>
+        var orders = [];
+
+        function addorders() {
+            getANeworder()
+            sortingOforder()
+            displayorder()
+            resetDataEntryFields()
+        }
+        function compareorder(a, b) {
+            if (a.id < b.id) return -1;
+            if (a.id > b.id) return 1;
+            // in case of equality 
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+
+            return 0;
+
+        }
+
+        function getANeworder() {
+            var orderid = document.getElementById("orderid").value;
+            var orderDate = document.getElementById("orderDate").value;
+            var clothId = document.getElementById("clothId").value;
+            var ordersquantity = document.getElementById("ordersquantity").value;
+            var orderCustomerCode = document.getElementById("orderCustomerCode").value;
+           
+            order = {
+                id: orderid,
+                order_date: orderDate,
+                cloth_id: clothId,
+                quantity: ordersquantity,
+                customer_code: orderCustomerCode,
+                
+            };
+
+            orders.push(order);
+        }
+
+        function sortingOforder() {
+            orders.sort(compareorder);//sort
+        }
+        function resetDataEntryFields() {
+            document.getElementById("orderid").value = "";
+            document.getElementById("orderDate").value = "";
+            document.getElementById("clothId").value = "";
+            document.getElementById("ordersquantity").value = "";
+            document.getElementById("orderCustomerCode").value = "";
             
+
+        }
+
+        function displayorder() {
+            var body = document.getElementById("orderTableBody");
+            body.innerHTML = "";//remove previous row             
+            for (var i = 0; i < orders.length; i++) {
+                var row = document.createElement("tr");
+
+
+                var cell = document.createElement("td");
+                cell.innerHTML = orders[i].id;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = orders[i].order_date;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = orders[i].cloth_id;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = orders[i].quantity;
+                row.appendChild(cell);
+
+                var cell = document.createElement("td");
+                cell.innerHTML = orders[i].customer_code;
+                row.appendChild(cell);
+
+              
+
+
+                body.appendChild(row);
+            }
+
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label>Id:</label>
+            <input type="number" name="orderid" id="orderid">
+        </div>
+
+
+        <div>
+            <label>Date:</label>
+            <input type="text" name="orderDate" id="orderDate" />
+        </div>
+
+
+        <div>
+            <label>Cloth Id:</label>
+            <input type="text" name="clothId" id="clothId" />
+        </div>
+
+
+        <div>
+            <label>Quantity:</label>
+            <input type="text" name="ordersquantity" id="ordersquantity" />
+        </div>
+
+
+        <div>
+            <label>Customer Code:</label>
+            <input type="text" name="orderCustomerCode" id="orderCustomerCode" />
+        </div>
+
+
+        <div><input type="button" value="Add" onclick="addorders();" />
+            <input type="button" value="Refresh" />
+            <input type="button" value="Search" />
+        </div>
+
+    </form>
+
+    <table border="1" id="orderTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Cloth Id</th>
+                <th>Quantity</th>
+                <th>Customer Code</th>
+           
+            </tr>
+        </thead>
+        <tbody id="orderTableBody">
+
+        </tbody>
+
+    </table>
+   
+</body>
+
+</html>
