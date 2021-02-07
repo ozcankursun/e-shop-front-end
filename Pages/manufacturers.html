@@ -1,184 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manufacturer</title>
-    <script>
-        var manufacturers = [];
+    
+  </head>
 
-        function addmanufacturer() {
-            getANewManufacturer()
-            sortingOfManufacturer()
-            displayManufacturer()
-            resetDataEntryFields()
-        }
-        function comparemanufacturer(a,b){
-            if (a.id<b.id) return -1;
-            if (a.id>b.id) return 1; 
-            // in case of equality 
-            if (a.name<b.name) return -1;
-            if (a.name>b.name) return 1; 
-
-            return 0;
-
-        }
-
-        function getANewManufacturer() {
-            var mnfid = document.getElementById("mnfid").value;
-            var mnfName = document.getElementById("mnfName").value;
-            var mnfCountryCodeName = document.getElementById("mnfCountryCodeName").value;
-            var mnfLink = document.getElementById("mnfLink").value;
-            var mnfDescription = document.getElementById("mnfDescription").value;
-            var mnfMoreDescription = document.getElementById("mnfMoreDescription").value;
-                manufacturer = {
-                    id : mnfid,
-                    name : mnfName,
-                    country_code : mnfCountryCodeName,
-                    link : mnfLink,
-                    description : mnfDescription,
-                    more_description : mnfMoreDescription,
-                };
-
-            manufacturers.push(manufacturer);
-        }
-
-        function sortingOfManufacturer() {
-            manufacturers.sort(comparemanufacturer);//sort
-        }
-        function resetDataEntryFields() {
-            document.getElementById("mnfid").value = "";
-            document.getElementById("mnfName").value = "";
-            document.getElementById("mnfCountryCodeName").value = "";
-            document.getElementById("mnfLink").value = "";
-            document.getElementById("mnfDescription").value = "";
-            document.getElementById("mnfMoreDescription").value = "";
-
-            }
-
-        function displayManufacturer() {
-            var body = document.getElementById("manufacturerTableBody");
-            body.innerHTML = "";//remove previous row             
-            for (var i = 0; i < manufacturers.length; i++) {
-                var row = document.createElement("tr");
-
-
-                var cell = document.createElement("td");
-                cell.innerHTML = manufacturers[i].id;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = manufacturers[i].name;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = manufacturers[i].country_code;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = manufacturers[i].link;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = manufacturers[i].description;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = manufacturers[i].more_description;
-                row.appendChild(cell);
-
-
-                body.appendChild(row);
-            }
-
-        
-        }
-
-    </script>
-</head>
-
-<body>
+  <body>
     <form>
-        <div>
-            <label>Id:</label>
-            <input type="number" name="mnfid" id="mnfid">
-        </div>
+      <div>
+        <label>Id:</label>
+        <input type="number" name="mnfid" id="mnfid" />
+      </div>
 
+      <div>
+        <label>Name:</label>
+        <input type="text" name="mnfName" id="mnfName" />
+      </div>
 
-        <div>
-            <label>Name:</label>
-            <input type="text" name="mnfName" id="mnfName" />
-        </div>
+      <div>
+        <label>Country Code:</label>
+        <input type="text" name="mnfCountryCodeName" id="mnfCountryCodeName" />
+      </div>
 
+      <div>
+        <label>Link:</label>
+        <input type="text" name="mnfLink" id="mnfLink" />
+      </div>
 
-        <div>
-            <label>Country Code:</label>
-            <input type="text" name="mnfCountryCodeName" id="mnfCountryCodeName" />
-        </div>
+      <div>
+        <label>Description:</label>
+        <input type="text" name="mnfDescription" id="mnfDescription" />
+      </div>
 
-
-        <div>
-            <label>Link:</label>
-            <input type="text" name="mnfLink" id="mnfLink" />
-        </div>
-
-
-        <div>
-            <label>Description:</label>
-            <input type="text" name="mnfDescription" id="mnfDescription" />
-        </div>
-
-
-        <div>
-            <label>More Description:</label>
-            <input type="text" name="mnfMoreDescription" id="mnfMoreDescription" />
-        </div>
-        <div><input type="button" value="Add" onclick="addmanufacturer();" />
-            <input type="button" value="Refresh" />
-            <input type="button" value="Search" />
-        </div>
-
+      <div>
+        <label>More Description:</label>
+        <input type="text" name="mnfMoreDescription" id="mnfMoreDescription" />
+      </div>
+      <div>
+        <input type="button" value="Add" onclick="addmanufacturer();" />
+        <input type="button" value="Refresh"/>
+        <input type="button" value="Search" />
+      </div>
     </form>
 
     <table border="1" id="manufacturerTable">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Country Code</th>
-                <th>Link</th>
-                <th>Description</th>
-                <th>More Description</th>
-            </tr>
-        </thead>
-        <tbody id="manufacturerTableBody">
-
-        </tbody>
-
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Country Code</th>
+          <th>Link</th>
+          <th>Description</th>
+          <th>More Description</th>
+        </tr>
+      </thead>
+      <tbody id="manufacturerTableBody"></tbody>
     </table>
-</body>
+  </body>
 
+
+
+
+  <script>
+    var manufacturers = [
+      {
+        id: 1,
+        name: "Rhybox",
+        country_code: "FR",
+        link: "http://dummyimage.com/136x225.jpg/ff4444/ffffff",
+        description: "Poisoning by amphetamines, assault, sequela",
+        more_description: "Poisoning by amphetamines, assault, sequela",
+      },
+    ];
+    
+
+    function addmanufacturer() {
+      getANewManufacturer();
+      displayManufacturer();
+      sortingOfManufacturer();
+      resetDataEntryFields();
+    }
+    displayManufacturer();
+    function comparemanufacturer(a, b) {
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
+      // in case of equality
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+
+      return 0;
+    }
+
+    function getANewManufacturer() {
+      var mnfid = document.getElementById("mnfid").value;
+      var mnfName = document.getElementById("mnfName").value;
+      var mnfCountryCodeName = document.getElementById("mnfCountryCodeName")
+        .value;
+      var mnfLink = document.getElementById("mnfLink").value;
+      var mnfDescription = document.getElementById("mnfDescription").value;
+      var mnfMoreDescription = document.getElementById("mnfMoreDescription")
+        .value;
+      manufacturer = {
+        id: mnfid,
+        name: mnfName,
+        country_code: mnfCountryCodeName,
+        link: mnfLink,
+        description: mnfDescription,
+        more_description: mnfMoreDescription,
+      };
+
+      manufacturers.push(manufacturer);
+    }
+
+    function sortingOfManufacturer() {
+      manufacturers.sort(comparemanufacturer); //sort
+    }
+    function resetDataEntryFields() {
+      document.getElementById("mnfid").value = "";
+      document.getElementById("mnfName").value = "";
+      document.getElementById("mnfCountryCodeName").value = "";
+      document.getElementById("mnfLink").value = "";
+      document.getElementById("mnfDescription").value = "";
+      document.getElementById("mnfMoreDescription").value = "";
+    }
+
+    function displayManufacturer() {
+      var tbody = document.getElementById("manufacturerTableBody");
+      
+      tbody.innerHTML = ""; //remove previous row
+      for (var i = 0; i < manufacturers.length; i++) {
+        var row = document.createElement("tr");
+
+        var cell = document.createElement("td");
+        cell.innerHTML = manufacturers[i].id;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerHTML = manufacturers[i].name;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerHTML = manufacturers[i].country_code;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerHTML = manufacturers[i].link;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerHTML = manufacturers[i].description;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerHTML = manufacturers[i].more_description;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerHTML = "X";
+        cell.onclick = () => {console.log("hello")}
+        row.appendChild(cell);
+
+ 
+        tbody.appendChild(row);
+      }
+    }
+
+
+  </script>
 </html>
-
-<!-- 
-1. The list of entries
-2. The ability to add a new entry
-3. Search capability
-4. Delete capability
-5. Menu or navigation bar at the top that allows us to go to the other CRUD pages
-6. The company logo at the top 
-7. Sample data: This is a mockup so the data will be lost after each refresh. 
-            In order to have a nice and realistic presentation, 
-            add sample JSON data in the page so it will load these 
-            data on each refresh. -->
-
-
-<!-- 
-            Manufacturer:
-            1. name
-            2. country 3 letter code
-            3. 2  links to photos of the manufacturer. Note: these are links to external sites! The site is not hosting these images 
-            4. short description. A brief paragraph regarding the manufacturer
-            5. description. A more detailed description of the manufacture and the process  etc.
-             -->
