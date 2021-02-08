@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manufacturer</title>
-    
   </head>
 
   <body>
@@ -40,7 +39,7 @@
       </div>
       <div>
         <input type="button" value="Add" onclick="addmanufacturer();" />
-        <input type="button" value="Refresh"/>
+        <input type="button" value="Refresh" />
         <input type="button" value="Search" />
       </div>
     </form>
@@ -60,9 +59,6 @@
     </table>
   </body>
 
-
-
-
   <script>
     var manufacturers = [
       {
@@ -73,8 +69,71 @@
         description: "Poisoning by amphetamines, assault, sequela",
         more_description: "Poisoning by amphetamines, assault, sequela",
       },
+      {
+        id: 2,
+        name: "Realbridge",
+        country_code: "FR",
+        link: "http://dummyimage.com/123x176.png/5fa2dd/ffffff",
+        description: "Juvenile osteochondrosis of radius and ulna",
+        more_description: "Juvenile osteochondrosis of radius an",
+      },
+      {
+        id: 3,
+        name: "Blogtag",
+        country_code: "FR",
+        link: "http://dummyimage.com/201x115.bmp/5fa2dd/ffffff",
+        description: "Maternal care for chromosomal abnormality in ",
+        more_description: "Maternal care for (suspec",
+      },
+      {
+        id: 4,
+        name: "Buzzshare",
+        country_code: "FR",
+        link: "http://dummyimage.com/196x228.bmp/5fa2dd/ffffff",
+        description: "Displ bicondylar fx unsp tibia, 7thM",
+        more_description: "Displaced bicondylar fracture of unspecified tibia",
+      },
+      {
+        id: 5,
+        name: "Edgepulse",
+        country_code: "BR",
+        link: "http://dummyimage.com/119x201.jpg/dddddd/000000",
+        description: "Hypokalemia",
+        more_description: "Hypokalemia",
+      },
+      {
+        id: 6,
+        name: "Mybuzz",
+        country_code: "BR",
+        link: "http://dummyimage.com/236x222.jpg/5fa2dd/ffffff",
+        description:"Other symptoms and signs involving",
+        more_description: "Other symptoms and signs involving appear",
+      },
+      {
+        id: 7,
+        name: "Flashspan",
+        country_code: "FR",
+        link: "http://dummyimage.com/110x167.bmp/cc0000/ffffff",
+        description: "Traum subrac hem w LOC >24 hr w/o ret consc w surv, init",
+        more_description: "Traumatic subarachnoid hemorrhage ",
+      },
+      {
+        id: 8,
+        name: "Oozz",
+        country_code: "BE",
+        link: "http://dummyimage.com/240x227.jpg/dddddd/000000",
+        description: "Congenital",
+        more_description: "Congenital absence ",
+      },
+      {
+        id: 9,
+        name: "Bluezoom",
+        country_code: "BR",
+        link: "http://dummyimage.com/226x125.jpg/dddddd/000000",
+        description: "Nondisp commnt fx shaft of r tibia, 7thQ",
+        more_description:"Nondisplaced comminuted fracture of shaft, ",
+      },
     ];
-    
 
     function addmanufacturer() {
       getANewManufacturer();
@@ -128,7 +187,7 @@
 
     function displayManufacturer() {
       var tbody = document.getElementById("manufacturerTableBody");
-      
+
       tbody.innerHTML = ""; //remove previous row
       for (var i = 0; i < manufacturers.length; i++) {
         var row = document.createElement("tr");
@@ -157,16 +216,15 @@
         cell.innerHTML = manufacturers[i].more_description;
         row.appendChild(cell);
 
-        var cell = document.createElement("td");
-        cell.innerHTML = "X";
-        cell.onclick = () => {console.log("hello")}
+        var cell = document.createElement("button");
+        cell.innerHTML = "Delete";
+        cell.onclick = () => {
+          console.log("hello");
+        };
         row.appendChild(cell);
 
- 
         tbody.appendChild(row);
       }
     }
-
-
   </script>
 </html>
