@@ -22,7 +22,29 @@
     <title>MainPageOf</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        .card {
+            padding: 10px;
+        }
+        .icons{
+            margin-left:-15px ;
+        }
+        .footerElement{
+            width: 500px;
+            text-align: center;
+    
+        }
+        .fa {
+            padding: 20px;
+            font-size: 30px;
+            width: 30px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50%;
+
+        }
+
         .container {
             display: flex;
             justify-content: center;
@@ -33,9 +55,10 @@
         #card {
             border: 5px solid black;
         }
-        .body{
+
+        .body {
             margin-right: 0px;
-            margin-left:0px;
+            margin-left: 0px;
         }
     </style>
 </head>
@@ -45,11 +68,12 @@
         <nav>
             <header
                 class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+                <img style="width :100px;height: 70px;" src="canvas_pants.jpg">
                 <p class="h5 my-0 me-md-auto fw-normal">Company logo</p>
+
                 <nav class="my-2 my-md-0 me-md-3">
-                    <a class="p-2 text-dark" href="#">Main Page</a>
-                    <a class="p-2 text-dark" href="#">Place Holder</a>
-                    <a class="p-2 text-dark" href="#">Support</a>
+                    <a class="p-2 text-dark" href="#">Home</a>
+                    <a class="p-2 text-dark" href="#">Orders</a>
                     <a class="p-2 text-dark" href="#">Contact</a>
                 </nav>
                 <a class="btn btn-outline-primary" href="#">Admin</a>
@@ -61,34 +85,52 @@
         <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis, sint.</p>
     </div>
 
-    <div id="app" class="container">
-        <card
-            data-image="https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=">
-            <h1 slot="header">Canyons</h1>
-            <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </card>
-        <card
-            data-image="https://images.unsplash.com/photo-1479659929431-4342107adfc1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
-            <h1 slot="header">Beaches</h1>
-            <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </card>
-        <card
-            data-image="https://images.unsplash.com/photo-1479644025832-60dabb8be2a1?dpr=2&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=">
-            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hellyhansen.com%2Fen_global%2Fessential-canvas-pant-62952&psig=AOvVaw1fLdXmYQaQfoBNue-X8NuU&ust=1612094231681000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMiSopLNw-4CFQAAAAAdAAAAABAD" alt="canvas pants">
-            <h1 slot="header">Trees</h1>
-            <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </card>
-        <card
-            data-image="https://images.unsplash.com/photo-1479621051492-5a6f9bd9e51a?dpr=2&auto=compress,format&fit=crop&w=1199&h=811&q=80&cs=tinysrgb&crop=">
-            <img src="C:\Users\w10\Desktop\FullStack Developer - FrontEnd eval - A. Ozcan Kursun\CustomerPages\canvas_pants.jpg" alt="canvas">
-            <h1 slot="header">Lakes</h1>
-            <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </card>
+    <div id="app" class="container d-flex justify-content-around">
+        <div class = "card">
+            <img style="width :200px;height: 150px;" src="canvas_pants.jpg"
+            alt="canvas pants">
+            <h3 slot="header">Canyons</h3>
+            <p slot="content">Lorem ipsum </p>
+        </div>
+        <div class = "card">
+           
+            <img style="width :200px;height: 150px;" src="canvas_pants.jpg"
+            alt="canvas pants">
+            <h3 slot="header">Beaches</h3>
+            <p slot="content">Lorem ipsum </p>
+        </div>
+        <div class = "card">
+            <img style="width :200px;height: 150px;" src="canvas_pants.jpg"
+                alt="canvas pants">
+            <h3 slot="header">Trees</h3>
+            <p slot="content">Lorem ipsum </p>
+        </div>
+        <div class = "card">
+            <img style="width :200px;height: 150px;" src="canvas_pants.jpg"
+                alt="canvas">
+            <h3 slot="header">Lakes</h3>
+            <p slot="content">Lorem ipsum </p>
+        </div>
     </div>
-    <footer>
-
-
-
+    <footer class="pt-4 my-md-5 pt-md-5 border-top d-flex justify-content-center">
+        <div class="d-flex flex-column ">
+            <div class="footerElement icons col-6 col-md">
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-instagram"></a>
+                <a href="#" class="fa fa-google"></a>
+                
+            </div>
+            <div class="footerElement col-6 col-md">
+                <h5>Contact</h5>
+                <ul class="list-unstyled text-small">
+                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+      
+                  <li>Copyright 1999-2021 by Ozcan. All Rights Reserved.</li>
+                </ul>
+            </div>
+        </div>
+        </div>
     </footer>
 
 

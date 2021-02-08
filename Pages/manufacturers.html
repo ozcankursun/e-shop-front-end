@@ -106,7 +106,7 @@
         name: "Mybuzz",
         country_code: "BR",
         link: "http://dummyimage.com/236x222.jpg/5fa2dd/ffffff",
-        description:"Other symptoms and signs involving",
+        description: "Other symptoms and signs involving",
         more_description: "Other symptoms and signs involving appear",
       },
       {
@@ -131,17 +131,17 @@
         country_code: "BR",
         link: "http://dummyimage.com/226x125.jpg/dddddd/000000",
         description: "Nondisp commnt fx shaft of r tibia, 7thQ",
-        more_description:"Nondisplaced comminuted fracture of shaft, ",
+        more_description: "Nondisplaced comminuted fracture of shaft, ",
       },
     ];
-
+   
     function addmanufacturer() {
       getANewManufacturer();
       displayManufacturer();
       sortingOfManufacturer();
       resetDataEntryFields();
     }
-    displayManufacturer();
+  
     function comparemanufacturer(a, b) {
       if (a.id < b.id) return -1;
       if (a.id > b.id) return 1;
@@ -185,45 +185,67 @@
       document.getElementById("mnfMoreDescription").value = "";
     }
 
+    function deleteRow (btn){
+      console.log(btn)
+      let row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+        
+      }
     function displayManufacturer() {
-      var tbody = document.getElementById("manufacturerTableBody");
+      // var tbody = document.getElementById("manufacturerTableBody");
 
-      tbody.innerHTML = ""; //remove previous row
+      // tbody.innerHTML = ""; //remove previous row
+  
+
+      let result= "";
       for (var i = 0; i < manufacturers.length; i++) {
-        var row = document.createElement("tr");
+        
+        result += `
+          <tr id='row'>
+          <td>${manufacturers[i].id}</td>
+          <td>${manufacturers[i].name}</td>
+          <td>${manufacturers[i].country_code}</td>
+          <td>${manufacturers[i].link}</td>
+          <td>${manufacturers[i].description}</td>
+          <td>${manufacturers[i].more_description}</td>
+          <td><input type='button' onclick='deleteRow(this);' class='btn btn-danger' value='Delete'/></td>
+          </tr>`;
+          document.getElementById("manufacturerTableBody").innerHTML = result;
 
-        var cell = document.createElement("td");
-        cell.innerHTML = manufacturers[i].id;
-        row.appendChild(cell);
+        // var row = document.createElement("tr");
 
-        var cell = document.createElement("td");
-        cell.innerHTML = manufacturers[i].name;
-        row.appendChild(cell);
+        // var cell = document.createElement("td");
+        // cell.innerHTML = manufacturers[i].id;
+        // row.appendChild(cell);
 
-        var cell = document.createElement("td");
-        cell.innerHTML = manufacturers[i].country_code;
-        row.appendChild(cell);
+        // var cell = document.createElement("td");
+        // cell.innerHTML = manufacturers[i].name;
+        // row.appendChild(cell);
 
-        var cell = document.createElement("td");
-        cell.innerHTML = manufacturers[i].link;
-        row.appendChild(cell);
+        // var cell = document.createElement("td");
+        // cell.innerHTML = manufacturers[i].country_code;
+        // row.appendChild(cell);
 
-        var cell = document.createElement("td");
-        cell.innerHTML = manufacturers[i].description;
-        row.appendChild(cell);
+        // var cell = document.createElement("td");
+        // cell.innerHTML = manufacturers[i].link;
+        // row.appendChild(cell);
 
-        var cell = document.createElement("td");
-        cell.innerHTML = manufacturers[i].more_description;
-        row.appendChild(cell);
+        // var cell = document.createElement("td");
+        // cell.innerHTML = manufacturers[i].description;
+        // row.appendChild(cell);
 
-        var cell = document.createElement("button");
-        cell.innerHTML = "Delete";
-        cell.onclick = () => {
-          console.log("hello");
-        };
-        row.appendChild(cell);
+        // var cell = document.createElement("td");
+        // cell.innerHTML = manufacturers[i].more_description;
+        // row.appendChild(cell);
 
-        tbody.appendChild(row);
+        // var cell = document.createElement("button");
+        // cell.innerHTML = "Delete";
+        // cell.onclick = () => {
+        //   console.log("hello");
+        // };
+        // row.appendChild(cell);
+
+        // tbody.appendChild(row);
       }
     }
   </script>
