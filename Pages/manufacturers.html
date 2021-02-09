@@ -4,48 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manufacturer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <style>
+
+
+
+
+        </style>
   </head>
 
   <body>
-    <form>
-      <div>
-        <label>Id:</label>
-        <input type="number" name="mnfid" id="mnfid" />
-      </div>
+    <header>  
+      <nav>
+      <header
+          class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+          <img style="width :100px;height: 70px;" src="canvas_pants.jpg">
+          <p class="h5 my-0 me-md-auto fw-normal">Company logo</p>
 
-      <div>
-        <label>Name:</label>
-        <input type="text" name="mnfName" id="mnfName" />
-      </div>
-
-      <div>
-        <label>Country Code:</label>
-        <input type="text" name="mnfCountryCodeName" id="mnfCountryCodeName" />
-      </div>
-
-      <div>
-        <label>Link:</label>
-        <input type="text" name="mnfLink" id="mnfLink" />
-      </div>
-
-      <div>
-        <label>Description:</label>
-        <input type="text" name="mnfDescription" id="mnfDescription" />
-      </div>
-
-      <div>
-        <label>More Description:</label>
-        <input type="text" name="mnfMoreDescription" id="mnfMoreDescription" />
-      </div>
-      <div>
-        <input type="button" value="Add" onclick="addmanufacturer();" />
-        <input type="button" value="Refresh" />
-        <input type="button" value="Search" />
-      </div>
-    </form>
-
-    <table border="1" id="manufacturerTable">
-      <thead>
+          <nav class="my-2 my-md-0 me-md-3">
+              <a class="p-2 text-dark" href="#">Home</a>
+              <a class="p-2 text-dark" href="#">Orders</a>
+              <a class="p-2 text-dark" href="#">Contact</a>
+          </nav>
+          <a class="btn btn-outline-primary" href="#">Admin</a></header>
+    
+<h1 style =text-align:center;>The List of Manufacturers</h1>
+    <table style="max-width:1200px; border: 2rem;" class="table mx-auto text-center table-striped table-hover table-bordered" border="1" id="manufacturerTable">
+      <thead class="thead-dark">
         <tr>
           <th>Id</th>
           <th>Name</th>
@@ -53,10 +39,53 @@
           <th>Link</th>
           <th>Description</th>
           <th>More Description</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody id="manufacturerTableBody"></tbody>
     </table>
+
+<div style="max-width:1200px; margin-top: auto; " class="container mx-auto">
+    <form>
+      <h3>Add New Manufacturer</h3>
+      <div class="form-group">
+        <label>Id:</label>
+        <input type="number" name="mnfid" id="mnfid" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" name="mnfName" id="mnfName" class="form-control"/>
+      </div>
+
+      <div class="form-group">
+        <label>Country Code:</label>
+        <input type="text" name="mnfCountryCodeName" id="mnfCountryCodeName" class="form-control"/>
+      </div>
+
+      <div class="form-group">
+        <label>Link:</label>
+        <input type="text" name="mnfLink" id="mnfLink" class="form-control"/>
+      </div>
+
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" name="mnfDescription" id="mnfDescription" class="form-control"/>
+      </div>
+
+      <div class="form-group">
+        <label>More Description:</label>
+        <input type="text" name="mnfMoreDescription" id="mnfMoreDescription" class="form-control"/>
+      </div>
+      <hr>
+      <div class="form-group">
+        <input type="button" class="btn btn-success" value="Add" onclick="addmanufacturer();" />
+        <input type="button" class="btn btn-success" value="Refresh" />
+        <input type="button" class="btn btn-success" value="Search"  />
+      </div>
+      <hr>
+    </form>
+  </div>
   </body>
 
   <script>
@@ -134,7 +163,7 @@
         more_description: "Nondisplaced comminuted fracture of shaft, ",
       },
     ];
-   
+    displayManufacturer();
     function addmanufacturer() {
       getANewManufacturer();
       displayManufacturer();
