@@ -1,235 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manufacturer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <style>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manufacturer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <style>
 
 
 
 
-        </style>
-  </head>
+  </style>
+</head>
 
-  <body>
-    <header>  
-      <nav>
+<body>
+  <header>
+    <nav>
       <header
-          class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-          <img style="width :100px;height: 70px;" src="canvas_pants.jpg">
-          <p class="h5 my-0 me-md-auto fw-normal">Company logo</p>
+        class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <img style="width :100px;height: 70px;" src="canvas_pants.jpg">
+        <p class="h5 my-0 me-md-auto fw-normal">Company logo</p>
 
-          <nav class="my-2 my-md-0 me-md-3">
-              <a class="p-2 text-dark" href="#">Home</a>
-              <a class="p-2 text-dark" href="#">Orders</a>
-              <a class="p-2 text-dark" href="#">Contact</a>
-          </nav>
-          <a class="btn btn-outline-primary" href="#">Admin</a></header>
-    
-<h1 style =text-align:center;>The List of Manufacturers</h1>
-    <table style="max-width:1200px; border: 2rem;" class="table mx-auto text-center table-striped table-hover table-bordered" border="1" id="manufacturerTable">
-      <thead class="thead-dark">
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Country Code</th>
-          <th>Link</th>
-          <th>Description</th>
-          <th>More Description</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody id="manufacturerTableBody"></tbody>
-    </table>
+        <nav class="my-2 my-md-0 me-md-3">
+          <a class="p-2 text-dark" href="#">Home</a>
+          <a class="p-2 text-dark" href="#">Orders</a>
+          <a class="p-2 text-dark" href="#">Contact</a>
+          <hr>
+          <input style = "float: right;"type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+        </nav>
+        <a class="btn btn-outline-primary" href="#">Admin</a>
+      </header>
 
-<div style="max-width:1200px; margin-top: auto; " class="container mx-auto">
-    <form>
-      <h3>Add New Manufacturer</h3>
-      <div class="form-group">
-        <label>Id:</label>
-        <input type="number" name="mnfid" id="mnfid" class="form-control" />
+      <h1 style=text-align:center;>The List of Manufacturers</h1>
+      <table id = "myTable" style="max-width:1200px; border: 2rem;"
+        class="table mx-auto text-center table-striped table-hover table-bordered" border="1" id="manufacturerTable">
+        <thead class="thead-dark">
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Country Code</th>
+            <th>Link</th>
+            <th>Description</th>
+            <th>More Description</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="manufacturerTableBody"></tbody>
+      </table>
+
+      <div style="max-width:1200px; margin-top: auto; " class="container mx-auto">
+        <form>
+          <h3>Add New Manufacturer</h3>
+          <div class="form-group">
+            <label>Id:</label>
+            <input type="number" name="mnfid" id="mnfid" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="mnfName" id="mnfName" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label>Country Code:</label>
+            <input type="text" name="mnfCountryCodeName" id="mnfCountryCodeName" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label>Link:</label>
+            <input type="text" name="mnfLink" id="mnfLink" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label>Description:</label>
+            <input type="text" name="mnfDescription" id="mnfDescription" class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label>More Description:</label>
+            <input type="text" name="mnfMoreDescription" id="mnfMoreDescription" class="form-control" />
+          </div>
+          <hr>
+          <div class="form-group">
+            <input type="button" class="btn btn-success" value="Add" onclick="addmanufacturer();" />
+            <input type="button" class="btn btn-success" value="Refresh" />
+           
+          </div>
+          <hr>
+        </form>
       </div>
+</body>
 
-      <div class="form-group">
-        <label>Name:</label>
-        <input type="text" name="mnfName" id="mnfName" class="form-control"/>
-      </div>
-
-      <div class="form-group">
-        <label>Country Code:</label>
-        <input type="text" name="mnfCountryCodeName" id="mnfCountryCodeName" class="form-control"/>
-      </div>
-
-      <div class="form-group">
-        <label>Link:</label>
-        <input type="text" name="mnfLink" id="mnfLink" class="form-control"/>
-      </div>
-
-      <div class="form-group">
-        <label>Description:</label>
-        <input type="text" name="mnfDescription" id="mnfDescription" class="form-control"/>
-      </div>
-
-      <div class="form-group">
-        <label>More Description:</label>
-        <input type="text" name="mnfMoreDescription" id="mnfMoreDescription" class="form-control"/>
-      </div>
-      <hr>
-      <div class="form-group">
-        <input type="button" class="btn btn-success" value="Add" onclick="addmanufacturer();" />
-        <input type="button" class="btn btn-success" value="Refresh" />
-        <input type="button" class="btn btn-success" value="Search"  />
-      </div>
-      <hr>
-    </form>
-  </div>
-  </body>
-
-  <script>
-    var manufacturers = [
-      {
-        id: 1,
-        name: "Rhybox",
-        country_code: "FR",
-        link: "http://dummyimage.com/136x225.jpg/ff4444/ffffff",
-        description: "Poisoning by amphetamines, assault, sequela",
-        more_description: "Poisoning by amphetamines, assault, sequela",
-      },
-      {
-        id: 2,
-        name: "Realbridge",
-        country_code: "FR",
-        link: "http://dummyimage.com/123x176.png/5fa2dd/ffffff",
-        description: "Juvenile osteochondrosis of radius and ulna",
-        more_description: "Juvenile osteochondrosis of radius an",
-      },
-      {
-        id: 3,
-        name: "Blogtag",
-        country_code: "FR",
-        link: "http://dummyimage.com/201x115.bmp/5fa2dd/ffffff",
-        description: "Maternal care for chromosomal abnormality in ",
-        more_description: "Maternal care for (suspec",
-      },
-      {
-        id: 4,
-        name: "Buzzshare",
-        country_code: "FR",
-        link: "http://dummyimage.com/196x228.bmp/5fa2dd/ffffff",
-        description: "Displ bicondylar fx unsp tibia, 7thM",
-        more_description: "Displaced bicondylar fracture of unspecified tibia",
-      },
-      {
-        id: 5,
-        name: "Edgepulse",
-        country_code: "BR",
-        link: "http://dummyimage.com/119x201.jpg/dddddd/000000",
-        description: "Hypokalemia",
-        more_description: "Hypokalemia",
-      },
-      {
-        id: 6,
-        name: "Mybuzz",
-        country_code: "BR",
-        link: "http://dummyimage.com/236x222.jpg/5fa2dd/ffffff",
-        description: "Other symptoms and signs involving",
-        more_description: "Other symptoms and signs involving appear",
-      },
-      {
-        id: 7,
-        name: "Flashspan",
-        country_code: "FR",
-        link: "http://dummyimage.com/110x167.bmp/cc0000/ffffff",
-        description: "Traum subrac hem w LOC >24 hr w/o ret consc w surv, init",
-        more_description: "Traumatic subarachnoid hemorrhage ",
-      },
-      {
-        id: 8,
-        name: "Oozz",
-        country_code: "BE",
-        link: "http://dummyimage.com/240x227.jpg/dddddd/000000",
-        description: "Congenital",
-        more_description: "Congenital absence ",
-      },
-      {
-        id: 9,
-        name: "Bluezoom",
-        country_code: "BR",
-        link: "http://dummyimage.com/226x125.jpg/dddddd/000000",
-        description: "Nondisp commnt fx shaft of r tibia, 7thQ",
-        more_description: "Nondisplaced comminuted fracture of shaft, ",
-      },
-    ];
+<script>
+  var manufacturers = [
+    {
+      id: 1,
+      name: "Rhybox",
+      country_code: "FR",
+      link: "http://dummyimage.com/136x225.jpg/ff4444/ffffff",
+      description: "Poisoning by amphetamines, assault, sequela",
+      more_description: "Poisoning by amphetamines, assault, sequela",
+    },
+    {
+      id: 2,
+      name: "Realbridge",
+      country_code: "FR",
+      link: "http://dummyimage.com/123x176.png/5fa2dd/ffffff",
+      description: "Juvenile osteochondrosis of radius and ulna",
+      more_description: "Juvenile osteochondrosis of radius an",
+    },
+    {
+      id: 3,
+      name: "Blogtag",
+      country_code: "FR",
+      link: "http://dummyimage.com/201x115.bmp/5fa2dd/ffffff",
+      description: "Maternal care for chromosomal abnormality in ",
+      more_description: "Maternal care for (suspec",
+    },
+    {
+      id: 4,
+      name: "Buzzshare",
+      country_code: "FR",
+      link: "http://dummyimage.com/196x228.bmp/5fa2dd/ffffff",
+      description: "Displ bicondylar fx unsp tibia, 7thM",
+      more_description: "Displaced bicondylar fracture of unspecified tibia",
+    },
+    {
+      id: 5,
+      name: "Edgepulse",
+      country_code: "BR",
+      link: "http://dummyimage.com/119x201.jpg/dddddd/000000",
+      description: "Hypokalemia",
+      more_description: "Hypokalemia",
+    },
+    {
+      id: 6,
+      name: "Mybuzz",
+      country_code: "BR",
+      link: "http://dummyimage.com/236x222.jpg/5fa2dd/ffffff",
+      description: "Other symptoms and signs involving",
+      more_description: "Other symptoms and signs involving appear",
+    },
+    {
+      id: 7,
+      name: "Flashspan",
+      country_code: "FR",
+      link: "http://dummyimage.com/110x167.bmp/cc0000/ffffff",
+      description: "Traum subrac hem w LOC >24 hr w/o ret consc w surv, init",
+      more_description: "Traumatic subarachnoid hemorrhage ",
+    },
+    {
+      id: 8,
+      name: "Oozz",
+      country_code: "BE",
+      link: "http://dummyimage.com/240x227.jpg/dddddd/000000",
+      description: "Congenital",
+      more_description: "Congenital absence ",
+    },
+    {
+      id: 9,
+      name: "Bluezoom",
+      country_code: "BR",
+      link: "http://dummyimage.com/226x125.jpg/dddddd/000000",
+      description: "Nondisp commnt fx shaft of r tibia, 7thQ",
+      more_description: "Nondisplaced comminuted fracture of shaft, ",
+    },
+  ];
+  displayManufacturer();
+  function addmanufacturer() {
+    getANewManufacturer();
     displayManufacturer();
-    function addmanufacturer() {
-      getANewManufacturer();
-      displayManufacturer();
-      sortingOfManufacturer();
-      resetDataEntryFields();
-    }
-  
-    function comparemanufacturer(a, b) {
-      if (a.id < b.id) return -1;
-      if (a.id > b.id) return 1;
-      // in case of equality
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
+    sortingOfManufacturer();
+    resetDataEntryFields();
+  }
 
-      return 0;
-    }
+  function comparemanufacturer(a, b) {
+    if (a.id < b.id) return -1;
+    if (a.id > b.id) return 1;
+    // in case of equality
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
 
-    function getANewManufacturer() {
-      var mnfid = document.getElementById("mnfid").value;
-      var mnfName = document.getElementById("mnfName").value;
-      var mnfCountryCodeName = document.getElementById("mnfCountryCodeName")
-        .value;
-      var mnfLink = document.getElementById("mnfLink").value;
-      var mnfDescription = document.getElementById("mnfDescription").value;
-      var mnfMoreDescription = document.getElementById("mnfMoreDescription")
-        .value;
-      manufacturer = {
-        id: mnfid,
-        name: mnfName,
-        country_code: mnfCountryCodeName,
-        link: mnfLink,
-        description: mnfDescription,
-        more_description: mnfMoreDescription,
-      };
+    return 0;
+  }
 
-      manufacturers.push(manufacturer);
-    }
+  function getANewManufacturer() {
+    var mnfid = document.getElementById("mnfid").value;
+    var mnfName = document.getElementById("mnfName").value;
+    var mnfCountryCodeName = document.getElementById("mnfCountryCodeName")
+      .value;
+    var mnfLink = document.getElementById("mnfLink").value;
+    var mnfDescription = document.getElementById("mnfDescription").value;
+    var mnfMoreDescription = document.getElementById("mnfMoreDescription")
+      .value;
+    manufacturer = {
+      id: mnfid,
+      name: mnfName,
+      country_code: mnfCountryCodeName,
+      link: mnfLink,
+      description: mnfDescription,
+      more_description: mnfMoreDescription,
+    };
 
-    function sortingOfManufacturer() {
-      manufacturers.sort(comparemanufacturer); //sort
-    }
-    function resetDataEntryFields() {
-      document.getElementById("mnfid").value = "";
-      document.getElementById("mnfName").value = "";
-      document.getElementById("mnfCountryCodeName").value = "";
-      document.getElementById("mnfLink").value = "";
-      document.getElementById("mnfDescription").value = "";
-      document.getElementById("mnfMoreDescription").value = "";
-    }
+    manufacturers.push(manufacturer);
+  }
 
-    function deleteRow (btn){
-      console.log(btn)
-      let row = btn.parentNode.parentNode;
-        row.parentNode.removeChild(row);
-        
-      }
-    function displayManufacturer() {
-      // var tbody = document.getElementById("manufacturerTableBody");
+  function sortingOfManufacturer() {
+    manufacturers.sort(comparemanufacturer); //sort
+  }
+  function resetDataEntryFields() {
+    document.getElementById("mnfid").value = "";
+    document.getElementById("mnfName").value = "";
+    document.getElementById("mnfCountryCodeName").value = "";
+    document.getElementById("mnfLink").value = "";
+    document.getElementById("mnfDescription").value = "";
+    document.getElementById("mnfMoreDescription").value = "";
+  }
 
-      // tbody.innerHTML = ""; //remove previous row
-  
+  function deleteRow(btn) {
+    console.log(btn)
+    let row = btn.parentNode.parentNode;
+    row.parentNode.removeChild(row);
 
-      let result= "";
-      for (var i = 0; i < manufacturers.length; i++) {
-        
-        result += `
+  }
+  function displayManufacturer() {
+    // var tbody = document.getElementById("manufacturerTableBody");
+
+    // tbody.innerHTML = ""; //remove previous row
+
+
+    let result = "";
+    for (var i = 0; i < manufacturers.length; i++) {
+
+      result += `
           <tr id='row'>
           <td>${manufacturers[i].id}</td>
           <td>${manufacturers[i].name}</td>
@@ -239,43 +244,66 @@
           <td>${manufacturers[i].more_description}</td>
           <td><input type='button' onclick='deleteRow(this);' class='btn btn-danger' value='Delete'/></td>
           </tr>`;
-          document.getElementById("manufacturerTableBody").innerHTML = result;
+      document.getElementById("manufacturerTableBody").innerHTML = result;
 
-        // var row = document.createElement("tr");
+      // var row = document.createElement("tr");
 
-        // var cell = document.createElement("td");
-        // cell.innerHTML = manufacturers[i].id;
-        // row.appendChild(cell);
+      // var cell = document.createElement("td");
+      // cell.innerHTML = manufacturers[i].id;
+      // row.appendChild(cell);
 
-        // var cell = document.createElement("td");
-        // cell.innerHTML = manufacturers[i].name;
-        // row.appendChild(cell);
+      // var cell = document.createElement("td");
+      // cell.innerHTML = manufacturers[i].name;
+      // row.appendChild(cell);
 
-        // var cell = document.createElement("td");
-        // cell.innerHTML = manufacturers[i].country_code;
-        // row.appendChild(cell);
+      // var cell = document.createElement("td");
+      // cell.innerHTML = manufacturers[i].country_code;
+      // row.appendChild(cell);
 
-        // var cell = document.createElement("td");
-        // cell.innerHTML = manufacturers[i].link;
-        // row.appendChild(cell);
+      // var cell = document.createElement("td");
+      // cell.innerHTML = manufacturers[i].link;
+      // row.appendChild(cell);
 
-        // var cell = document.createElement("td");
-        // cell.innerHTML = manufacturers[i].description;
-        // row.appendChild(cell);
+      // var cell = document.createElement("td");
+      // cell.innerHTML = manufacturers[i].description;
+      // row.appendChild(cell);
 
-        // var cell = document.createElement("td");
-        // cell.innerHTML = manufacturers[i].more_description;
-        // row.appendChild(cell);
+      // var cell = document.createElement("td");
+      // cell.innerHTML = manufacturers[i].more_description;
+      // row.appendChild(cell);
 
-        // var cell = document.createElement("button");
-        // cell.innerHTML = "Delete";
-        // cell.onclick = () => {
-        //   console.log("hello");
-        // };
-        // row.appendChild(cell);
+      // var cell = document.createElement("button");
+      // cell.innerHTML = "Delete";
+      // cell.onclick = () => {
+      //   console.log("hello");
+      // };
+      // row.appendChild(cell);
 
-        // tbody.appendChild(row);
+      // tbody.appendChild(row);
+    }
+  }
+  function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
       }
     }
-  </script>
+  }
+
+</script>
+
 </html>
