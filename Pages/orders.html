@@ -5,153 +5,265 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders</title>
-    <script>
-        var orders = [];
-
-        function addorders() {
-            getANeworder()
-            sortingOforder()
-            displayorder()
-            resetDataEntryFields()
-        }
-        function compareorder(a, b) {
-            if (a.id < b.id) return -1;
-            if (a.id > b.id) return 1;
-            // in case of equality 
-            if (a.name < b.name) return -1;
-            if (a.name > b.name) return 1;
-
-            return 0;
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+        * {
+            box-sizing: border-box;
         }
 
-        function getANeworder() {
-            var orderid = document.getElementById("orderid").value;
-            var orderDate = document.getElementById("orderDate").value;
-            var clothId = document.getElementById("clothId").value;
-            var ordersquantity = document.getElementById("ordersquantity").value;
-            var orderCustomerCode = document.getElementById("orderCustomerCode").value;
-           
-            order = {
-                id: orderid,
-                order_date: orderDate,
-                cloth_id: clothId,
-                quantity: ordersquantity,
-                customer_code: orderCustomerCode,
-                
-            };
-
-            orders.push(order);
+        #myInput {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
         }
 
-        function sortingOforder() {
-            orders.sort(compareorder);//sort
+        .search {
+            margin: auto;
+            width: 100%;
+            padding: 10px;
         }
-        function resetDataEntryFields() {
-            document.getElementById("orderid").value = "";
-            document.getElementById("orderDate").value = "";
-            document.getElementById("clothId").value = "";
-            document.getElementById("ordersquantity").value = "";
-            document.getElementById("orderCustomerCode").value = "";
-            
+    </style>
 
-        }
-
-        function displayorder() {
-            var body = document.getElementById("orderTableBody");
-            body.innerHTML = "";//remove previous row             
-            for (var i = 0; i < orders.length; i++) {
-                var row = document.createElement("tr");
-
-
-                var cell = document.createElement("td");
-                cell.innerHTML = orders[i].id;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = orders[i].order_date;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = orders[i].cloth_id;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = orders[i].quantity;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = orders[i].customer_code;
-                row.appendChild(cell);
-
-              
-
-
-                body.appendChild(row);
-            }
-
-
-        }
-
-    </script>
 </head>
 
 <body>
-    <form>
-        <div>
-            <label>Id:</label>
-            <input type="number" name="orderid" id="orderid">
-        </div>
+    <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <img style="width :100px;height: 70px;" src="canvas_pants.jpg">
+        <p class="h5 my-0 me-md-auto fw-normal">Company logo</p>
 
+        <nav class="my-2 my-md-0 me-md-3">
+            <a class="p-2 text-dark" href="#">Home</a>
+            <a class="p-2 text-dark" href="#">Orders</a>
+            <a class="p-2 text-dark" href="#">Contact</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="#">Admin</a>
+    </header>
 
-        <div>
-            <label>Date:</label>
-            <input type="date" name="orderDate" id="orderDate" />
-        </div>
+    <h1 style=text-align:center;>The List of Orders</h1>
+    <div style="max-width:1200px;" border="1" class="search">
+        <input type="text" id="myInput" onkeyup="myFunction()"
+            placeholder="Search for Cloth Id.."></div>
 
-
-        <div>
-            <label>Cloth Id:</label>
-            <input type="number" name="clothId" id="clothId" />
-        </div>
-
-
-        <div>
-            <label>Quantity:</label>
-            <input type="number" name="ordersquantity" id="ordersquantity" />
-        </div>
-
-
-        <div>
-            <label>Customer Code:</label>
-            <input type="number" name="orderCustomerCode" id="orderCustomerCode" />
-        </div>
-
-
-        <div><input type="button" value="Add" onclick="addorders();" />
-            <input type="button" value="Refresh" />
-            <input type="button" value="Search" />
-        </div>
-
-    </form>
-
-    <table border="1" id="orderTable">
-        <thead>
+    <table id="myTable" style="max-width:1200px; border: 2rem;"
+        class="table mx-auto text-center table-striped table-hover table-bordered" border="1" id="orderTable">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
                 <th>Date</th>
                 <th>Cloth Id</th>
                 <th>Quantity</th>
                 <th>Customer Code</th>
-           
+                <th>Delete</th>
             </tr>
         </thead>
-        <tbody id="orderTableBody">
-
-        </tbody>
-
+        <tbody id="orderTableBody"></tbody>
     </table>
-   
+
+    <div style="max-width:1200px; margin-top: auto; " class="container mx-auto">
+        <form>
+            <h3>Add New Order</h3>
+            <div class="form-group">
+                <label>Id:</label>
+                <input type="number" name="orderid" id="orderid" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" name="orderDate" id="orderDate" class="form-control">
+            </div>
+
+
+            <div class="form-group">
+                <label>Cloth Id:</label>
+                <input type="number" name="clothId" id="clothId" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <label>Quantity:</label>
+                <input type="number" name="orderQuantity" id="orderQuantity" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <label>Customer Code:</label>
+                <input type="number" name="orderCustomerCode" id="orderCustomerCode" class="form-control" />
+            </div>
+        
+
+
+            <div class="form-group">
+                <input type="button" class="btn btn-success" value="Add" onclick="addorders();" />
+                <input type="button" class="btn btn-success" value="Refresh" />
+            </div>
+            <hr>
+        </form>
+        <script>
+            var orders = [
+                { id: 1, order_date: "2018-08-12T21:00:00.000Z", cloth_id: 2, quantity: 49, customer_code: "4185320604" },
+                { id: 2, order_date: "2020-08-05T21:00:00.000Z", cloth_id: 8, quantity: 75, customer_code: "6269385202" },
+                { id: 3, order_date: "2019-12-09T22:00:00.000Z", cloth_id: 2, quantity: 88, customer_code: "4949587765" },
+                { id: 4, order_date: "2019-02-23T22:00:00.000Z", cloth_id: 6, quantity: 80, customer_code: "4064457986" },
+                { id: 5, order_date: "2020-06-18T21:00:00.000Z", cloth_id: 9, quantity: 67, customer_code: "5363058413" },
+                { id: 6, order_date: "2018-08-31T21:00:00.000Z", cloth_id: 7, quantity: 72, customer_code: "7962638214" },
+                { id: 7, order_date: "2018-07-17T21:00:00.000Z", cloth_id: 4, quantity: 91, customer_code: "6230711389" },
+                { id: 8, order_date: "2020-09-27T21:00:00.000Z", cloth_id: 2, quantity: 40, customer_code: "4762380954" },
+                { id: 9, order_date: "2019-07-15T21:00:00.000Z", cloth_id: 3, quantity: 55, customer_code: "9565432387" },
+                { id: 10, order_date: "2020-07-03T21:00:00.000Z", cloth_id: 4, quantity: 69, customer_code: "7111211014" },
+            ];
+            displayOrder()
+            function addorders() {
+                getANewOrder()
+                sortingOfOrder()
+                displayOrder()
+                resetDataEntryFields()
+            }
+            function compareOrder(a, b) {
+                if (a.id < b.id) return -1;
+                if (a.id > b.id) return 1;
+                // in case of equality 
+                if (a.name < b.name) return -1;
+                if (a.name > b.name) return 1;
+
+                return 0;
+
+            }
+
+            function getANewOrder() {
+                var orderid = document.getElementById("orderid").value;
+                var orderDate = document.getElementById("orderDate").value;
+                var clothId = document.getElementById("clothId").value;
+                var orderQuantity = document.getElementById("orderQuantity").value;
+                var orderCustomerCode = document.getElementById("orderCustomerCode").value;
+
+                order = {
+                    id: orderid,
+                    order_date: orderDate,
+                    cloth_id: clothId,
+                    quantity: orderQuantity,
+                    customer_code: orderCustomerCode,
+
+                };
+
+                orders.push(order);
+            }
+
+            function sortingOfOrder() {
+                orders.sort(compareOrder);//sort
+            }
+            function resetDataEntryFields() {
+                document.getElementById("orderid").value = "";
+                document.getElementById("orderDate").value = "";
+                document.getElementById("clothId").value = "";
+                document.getElementById("orderQuantity").value = "";
+                document.getElementById("orderCustomerCode").value = "";
+
+
+            }
+            function deleteRow(btn) {
+                console.log(btn)
+                let row = btn.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+
+            }
+
+            function displayOrder() {
+
+                let result = "";
+                for (var i = 0; i < orders.length; i++) {
+
+                    result += `
+          <tr id='row'>
+          <td>${orders[i].id}</td>
+          <td>${orders[i].order_date}</td>
+          <td>${orders[i].cloth_id}</td>
+          <td>${orders[i].quantity}</td>
+          <td>${orders[i].customer_code}</td>
+          <td><input type='button' onclick='deleteRow(this);' class='btn btn-danger' value='Delete'/></td>
+          </tr>`;
+                    document.getElementById("orderTableBody").innerHTML = result;
+                    // var body = document.getElementById("orderTableBody");
+                    // body.innerHTML = "";//remove previous row             
+                    // for (var i = 0; i < orders.length; i++) {
+                    //     var row = document.createElement("tr");
+
+
+                    //     var cell = document.createElement("td");
+                    //     cell.innerHTML = orders[i].id;
+                    //     row.appendChild(cell);
+
+                    //     var cell = document.createElement("td");
+                    //     cell.innerHTML = orders[i].order_date;
+                    //     row.appendChild(cell);
+
+                    //     var cell = document.createElement("td");
+                    //     cell.innerHTML = orders[i].cloth_id;
+                    //     row.appendChild(cell);
+
+                    //     var cell = document.createElement("td");
+                    //     cell.innerHTML = orders[i].quantity;
+                    //     row.appendChild(cell);
+
+                    //     var cell = document.createElement("td");
+                    //     cell.innerHTML = orders[i].customer_code;
+                    //     row.appendChild(cell);
+
+
+
+
+                    //     body.appendChild(row);
+                }
+
+
+            }
+
+            function myFunction() {
+                // Declare variables
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[2];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+
+        </script>
+
+        <!-- <table border="1" id="orderTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Cloth Id</th>
+                    <th>Quantity</th>
+                    <th>Customer Code</th>
+
+                </tr>
+            </thead>
+            <tbody id="orderTableBody">
+
+            </tbody>
+
+        </table> -->
+
 </body>
 
 </html>

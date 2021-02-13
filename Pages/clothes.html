@@ -2,189 +2,341 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clothes</title>
-    <script>
-        var clothes = [];
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clothes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        function addcloth() {
-            getANewcloth()
-            sortingOfcloth()
-            displaycloth()
-            resetDataEntryFields()
-        }
-        function compareclothes(a, b) {
-            if (a.id < b.id) return -1;
-            if (a.id > b.id) return 1;
-            // in case of equality 
-            if (a.name < b.name) return -1;
-            if (a.name > b.name) return 1;
+    #myInput {
+      background-image: url('/css/searchicon.png');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
 
-            return 0;
-
-        }
-
-        function getANewcloth() {
-            var clothid = document.getElementById("clothid").value;
-            var clothName = document.getElementById("clothName").value;
-            var clothimageFilename = document.getElementById("clothimageFilename").value;
-            var manufacturerId = document.getElementById("manufacturerId").value;
-            var clothDescription = document.getElementById("clothDescription").value;
-            var clothMoreDescription = document.getElementById("clothMoreDescription").value;
-            cloth = {
-                id: clothid,
-                code: clothName,
-                image_filename: clothimageFilename,
-                manufacturer_id: manufacturerId,
-                short_description: clothDescription,
-                more_description: clothMoreDescription,
-            };
-
-            clothes.push(cloth);
-        }
-
-        function sortingOfcloth() {
-            clothes.sort(compareclothes);//sort
-        }
-        function resetDataEntryFields() {
-            document.getElementById("clothid").value = "";
-            document.getElementById("clothName").value = "";
-            document.getElementById("clothimageFilename").value = "";
-            document.getElementById("manufacturerId").value = "";
-            document.getElementById("clothDescription").value = "";
-            document.getElementById("clothMoreDescription").value = "";
-
-        }
-
-        function displaycloth() {
-            var body = document.getElementById("clothTableBody");
-            body.innerHTML = "";//remove previous row             
-            for (var i = 0; i < clothes.length; i++) {
-                var row = document.createElement("tr");
-
-
-                var cell = document.createElement("td");
-                cell.innerHTML = clothes[i].id;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = clothes[i].code;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = clothes[i].image_filename;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = clothes[i].manufacturer_id;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = clothes[i].short_description;
-                row.appendChild(cell);
-
-                var cell = document.createElement("td");
-                cell.innerHTML = clothes[i].more_description;
-                row.appendChild(cell);
-
-
-                body.appendChild(row);
-            }
-
-
-        }
-
-     
-
-    </script>
+    .search {
+      margin: auto;
+      width: 100%;
+      padding: 10px;
+    }
+  </style>
 </head>
 
 <body>
+  <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <img style="width :100px;height: 70px;" src="canvas_pants.jpg">
+    <p class="h5 my-0 me-md-auto fw-normal">Company logo</p>
+
+    <nav class="my-2 my-md-0 me-md-3">
+      <a class="p-2 text-dark" href="#">Home</a>
+      <a class="p-2 text-dark" href="#">Orders</a>
+      <a class="p-2 text-dark" href="#">Contact</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="#">Admin</a>
+  </header>
+
+  <h1 style=text-align:center;>The List of Clothes</h1>
+  <div style="max-width:1200px;" border="1" class="search">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Code..">
+  </div>
+
+  <table id="myTable" style="max-width:1200px; border: 2rem;"
+    class="table mx-auto text-center table-striped table-hover table-bordered" border="1" id="clothesTable">
+    <thead class="thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Image</th>
+        <th>Manufacturer ID</th>
+        <th>Description</th>
+        <th>More Description</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="clothesTableBody"></tbody>
+  </table>
+
+  <div style="max-width:1200px; margin-top: auto; " class="container mx-auto">
     <form>
-        <div>
-            <label>Id:</label>
-            <input type="number" name="clothid" id="clothid">
-        </div>
+      <h3>Add New Clothes</h3>
+      <div class="form-group">
+        <label>Id:</label>
+        <input type="number" name="clothid" id="clothid" class="form-control" />
+      </div>
 
+      <div class="form-group">
+        <label>Code:</label>
+        <input type="number" name="clothName" id="clothName" class="form-control" />
+      </div>
 
-        <div>
-            <label>Code:</label>
-            <input type="number" name="clothName" id="clothName" />
-        </div>
+      <div class="form-group">
+        <label>Image:</label>
+        <input type="text" name="clothimageFilename" id="clothimageFilename" class="form-control" />
+      </div>
 
+      <div class="form-group">
+        <label>Manufacturer Id:</label>
+        <input type="number" name="manufacturerId" id="manufacturerId" class="form-control" />
+      </div>
 
-        <div>
-            <label>Image:</label>
-            <input type="text" name="clothimageFilename" id="clothimageFilename" />
-        </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" name="clothDescription" id="clothDescription" class="form-control" />
+      </div>
 
-
-        <div>
-            <label>Manufacturer Id:</label>
-            <input type="number" name="manufacturerId" id="manufacturerId" />
-        </div>
-
-
-        <div>
-            <label>Description:</label>
-            <input type="text" name="clothDescription" id="clothDescription" />
-        </div>
-
-
-        <div>
-            <label>More Description:</label>
-            <input type="text" name="clothMoreDescription" id="clothMoreDescription" />
-        </div>
-        <div><input type="button" value="Add" onclick="addcloth();" />
-            <input type="button" value="Refresh" />
-            <input type="button" value="Search" />
-        </div>
-
+      <div>
+        <label class="form-group">More Description:</label>
+        <input type="text" name="clothMoreDescription" id="clothMoreDescription" class="form-control" />
+      </div>
+      <hr>
+      <div class="form-group">
+        <input type="button" class="btn btn-success" value="Add" onclick="addcloth();" />
+        <input type="button" class="btn btn-success" value="Refresh" />
+        <hr>
+      </div>
+      <hr>
     </form>
 
-    <table border="1" id="clothTable">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Code</th>
-                <th>Image</th>
-                <th>Manufacturer</th>
-                <th>Description</th>
-                <th>More Description</th>
-            </tr>
-        </thead>
-        <tbody id="clothTableBody">
-
-        </tbody>
-
-    </table>
+    <!-- <table border="1" id="clothTable">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Code</th>
+          <th>Image</th>
+          <th>Manufacturer</th>
+          <th>Description</th>
+          <th>More Description</th>
+        </tr>
+      </thead>
+      <tbody id="clothTableBody"></tbody>
+    </table> -->
 </body>
+<script>
+  var clothes = [
+    {
+      id: 1,
+      code: "218207",
+      image_filename: "Eget.mp3",
+      manufacturer_id: 5,
+      short_description: "Morbi vel lectus in quam fringilla rhoncus.",
+      more_description: "Suspendisse potenti. Cras in purus eu magna vulputate luctus. ",
+    },
+    {
+      id: 2,
+      code: "046979",
+      image_filename: "Mi.mov",
+      manufacturer_id: 4,
+      short_description: "Nulla nisl. Nunc nisl.",
+      more_description: "Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio,",
+    },
+    {
+      id: 3,
+      code: "491131",
+      image_filename: "VolutpatSapienArcu.tiff",
+      manufacturer_id: 7,
+      short_description: "Aenean fermentum.",
+      more_description: "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. ",
+    },
+    {
+      id: 4,
+      code: "754665",
+      image_filename: "Dui.avi",
+      manufacturer_id: 6,
+      short_description: "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
+      more_description: "In quis justo. Maecenas rhoncus aliquam lacus. ",
+    },
+    {
+      id: 5,
+      code: "365422",
+      image_filename: "Libero.ppt",
+      manufacturer_id: 5,
+      short_description: "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
+      more_description: "Suspendisse potenti. Cras in purus eu magna vulputate luctus. ",
+    },
+    {
+      id: 6,
+      code: "139374",
+      image_filename: "AmetConsectetuer.mpeg",
+      manufacturer_id: 8,
+      short_description: "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum.",
+      more_description: "Nam nulla.",
+    },
+    {
+      id: 7,
+      code: "752032",
+      image_filename: "NonInterdum.mov",
+      manufacturer_id: 1,
+      short_description: "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
+      more_description: "Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
+    },
+    {
+      id: 8,
+      code: "451807",
+      image_filename: "Orci.mp3",
+      manufacturer_id: 9,
+      short_description: "Lorem ipsum.",
+      more_description: "Nulla nisl. Nunc nisl.",
+    },
+    {
+      id: 9,
+      code: "969372",
+      image_filename: "CursusUrna.tiff",
+      manufacturer_id: 3,
+      short_description: "Nullam molestie nibh in lectus.",
+      more_description: "Curabitur at ipsum ac tellus semper interdum.",
+    },
+    {
+      id: 10,
+      code: "793337",
+      image_filename: "AdipiscingMolestieHendrerit.txt",
+      manufacturer_id: 5,
+      short_description: "Nunc rhoncus dui vel sem. Sed sagittis.",
+      more_description: "In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl.",
+    },
+  ];
+  displaycloth();
+  function addcloth() {
+    getANewcloth();
+    sortingOfcloth();
+    displaycloth();
+    resetDataEntryFields();
+  }
+  function compareclothes(a, b) {
+    if (a.id < b.id) return -1;
+    if (a.id > b.id) return 1;
+    // in case of equality
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+
+    return 0;
+  }
+
+  function getANewcloth() {
+    var clothid = document.getElementById("clothid").value;
+    var clothName = document.getElementById("clothName").value;
+    var clothimageFilename = document.getElementById("clothimageFilename")
+      .value;
+    var manufacturerId = document.getElementById("manufacturerId").value;
+    var clothDescription = document.getElementById("clothDescription")
+      .value;
+    var clothMoreDescription = document.getElementById(
+      "clothMoreDescription"
+    ).value;
+    cloth = {
+      id: clothid,
+      code: clothName,
+      image_filename: clothimageFilename,
+      manufacturer_id: manufacturerId,
+      short_description: clothDescription,
+      more_description: clothMoreDescription,
+    };
+
+    clothes.push(cloth);
+  }
+
+  function sortingOfcloth() {
+    clothes.sort(compareclothes); //sort
+  }
+  function resetDataEntryFields() {
+    document.getElementById("clothid").value = "";
+    document.getElementById("clothName").value = "";
+    document.getElementById("clothimageFilename").value = "";
+    document.getElementById("manufacturerId").value = "";
+    document.getElementById("clothDescription").value = "";
+    document.getElementById("clothMoreDescription").value = "";
+  }
+
+
+  function deleteRow(btn) {
+    console.log(btn)
+    let row = btn.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+
+  }
+
+
+  function displaycloth() {
+    var body = document.getElementById("clothesTableBody");
+    body.innerHTML = ""; //remove previous row
+
+    let result = "";
+    for (var i = 0; i < clothes.length; i++) {
+
+      result += `
+          <tr id='row'>
+          <td>${clothes[i].id}</td>
+          <td>${clothes[i].code}</td>
+          <td>${clothes[i].image_filename}</td>
+          <td>${clothes[i].manufacturer_id}</td>
+          <td>${clothes[i].short_description}</td>
+          <td>${clothes[i].more_description}</td>
+          <td><input type='button' onclick='deleteRow(this);' class='btn btn-danger' value='Delete'/></td>
+          </tr>`;
+      document.getElementById("clothesTableBody").innerHTML = result;
+
+      // var row = document.createElement("tr");
+
+      // var cell = document.createElement("td");
+      // cell.innerHTML = clothes[i].id;
+      // row.appendChild(cell);
+
+      // var cell = document.createElement("td");
+      // cell.innerHTML = clothes[i].code;
+      // row.appendChild(cell);
+
+      // var cell = document.createElement("td");
+      // cell.innerHTML = clothes[i].image_filename;
+      // row.appendChild(cell);
+
+      // var cell = document.createElement("td");
+      // cell.innerHTML = clothes[i].manufacturer_id;
+      // row.appendChild(cell);
+
+      // var cell = document.createElement("td");
+      // cell.innerHTML = clothes[i].short_description;
+      // row.appendChild(cell);
+
+      // var cell = document.createElement("td");
+      // cell.innerHTML = clothes[i].more_description;
+      // row.appendChild(cell);
+
+      // body.appendChild(row);
+    }
+  }
+
+  function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- 
 1. The list of entries
@@ -197,7 +349,6 @@
             In order to have a nice and realistic presentation, 
             add sample JSON data in the page so it will load these 
             data on each refresh. -->
-
 
 <!-- 
             Clothes Page:
