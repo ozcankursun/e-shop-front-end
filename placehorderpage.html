@@ -1,34 +1,3 @@
-
-
-<!-- 
-1. should match the Main page in respects to design.
-2. displays info regarding the selected cloth
-    -code
-    -image
-    -name
-    -price
-    -the two images from the manufacturer info
-3. allows the user to enter the customer code
-4. allows the user to enter the quantity to order
-    -you may use an simple input box or whatever input type you select
-    -you could have a submit button or any other type of button you select
-5. after submitting the order, the user should return to the Main page -->
-
-<!-- 
-1. is the index of the site
-2. has the logo of the eshop
-3. has the motto of the eshop
-4. has contact info at the bottom
-5. has social links
-6. promo items: displays 4 (four) clothes in an appealing way. Info that should be included
-    -Image
-    -Title
-    -Short description
-    -Price
-    -link to PlaceOrder for the item
-7. this is a page that the customer sees so there are no links to the three pages of the owner (the CRUD pages)
-8. (prop) You may use section divs in order to divide the page. -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,14 +12,17 @@
         .card {
             padding: 10px;
         }
-        .icons{
-            margin-left:-15px ;
+
+        .icons {
+            margin-left: -15px;
         }
-        .footerElement{
+
+        .footerElement {
             width: 500px;
             text-align: center;
-    
+
         }
+
         .fa {
             padding: 20px;
             font-size: 30px;
@@ -88,8 +60,8 @@
                 <p class="h5 my-0 me-md-auto fw-normal">Company logo</p>
 
                 <nav class="my-2 my-md-0 me-md-3">
-                    <a class="p-2 text-dark" href="#">Home</a>
-                    <a class="p-2 text-dark" href="#">Orders</a>
+                    <a class="p-2 text-dark" href="./index.html">Home</a>
+                    <a class="p-2 text-dark" href="./placehorderpage.html">Order</a>
                     <a class="p-2 text-dark" href="#">Contact</a>
                 </nav>
                 <a class="btn btn-outline-primary" href="#">Admin</a>
@@ -102,23 +74,22 @@
     </div>
 
     <div id="app" class="container d-flex justify-content-center">
-       
-        <div class = "card">
-            <img style="width :400px;height: 300px;" src="canvas_pants.jpg"
-                alt="canvas">
+
+        <div class="card">
+            <img style="width :400px;height: 300px;" src="canvas_pants.jpg" alt="canvas">
             <p>Code:123456</p>
             <h3 slot="header">Lakes</h3>
             <h4 slot="content">Price : 30$</h4>
             <p slot="content">Lorem ipsum dolor sit amet consectetur adipisicing. </p>
         </div>
-        <div  class = "card">
-         
+        <div class="card">
+
             <label for="code">Customer code:</label><input type="text">
             <label for="quantity">Quantity:</label><input type="number">
-            
+
             <hr>
             <a class="btn btn-success" href="./index.html">Submit</a>
-          
+
         </div>
     </div>
     <footer class="pt-4 my-md-5 pt-md-5 border-top d-flex justify-content-center">
@@ -128,29 +99,50 @@
                 <a href="#" class="fa fa-twitter"></a>
                 <a href="#" class="fa fa-instagram"></a>
                 <a href="#" class="fa fa-google"></a>
-                
+
             </div>
             <div class="footerElement col-6 col-md">
                 <h5>Contact</h5>
                 <ul class="list-unstyled text-small">
-                  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-      
-                  <li>Copyright 1999-2021 by Ozcan. All Rights Reserved.</li>
+                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+
+                    <li>Copyright 1999-2021 by Ozcan. All Rights Reserved.</li>
                 </ul>
             </div>
         </div>
         </div>
     </footer>
 
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>
+
+
+<!-- 
+1. should match the Main page in respects to design.
+2. displays info regarding the selected cloth
+    -code
+    -image
+    -name
+    -price
+    -the two images from the manufacturer info
+3. allows the user to enter the customer code
+4. allows the user to enter the quantity to order
+    -you may use an simple input box or whatever input type you select
+    -you could have a submit button or any other type of button you select
+5. after submitting the order, the user should return to the Main page -->
+
+<!-- 
+1. is the index of the site
+2. has the logo of the eshop
+3. has the motto of the eshop
+4. has contact info at the bottom
+5. has social links
+6. promo items: displays 4 (four) clothes in an appealing way. Info that should be included
+    -Image
+    -Title
+    -Short description
+    -Price
+    -link to PlaceOrder for the item
+7. this is a page that the customer sees so there are no links to the three pages of the owner (the CRUD pages)
+8. (prop) You may use section divs in order to divide the page. -->

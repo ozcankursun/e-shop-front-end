@@ -8,29 +8,26 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <style>
-* {
-  box-sizing: border-box;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-#myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
+    #myInput {
+      background-image: url('/css/searchicon.png');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
 
-.search {
-  margin: auto;
-  width: 100%;
-  padding: 10px;
-}
-
-
-
+    .search {
+      margin: auto;
+      width: 100%;
+      padding: 10px;
+    }
   </style>
 </head>
 
@@ -52,9 +49,10 @@
       </header>
 
       <h1 style=text-align:center;>The List of Manufacturers</h1>
-      <div style = "max-width:1200px;" border="1" class = "search"  ><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."></div>
-      
-      <table id = "myTable" style="max-width:1200px; border: 2rem;"
+      <div style="max-width:1200px;" border="1" class="search"><input type="text" id="myInput" onkeyup="myFunction()"
+          placeholder="Search for names.."></div>
+
+      <table id="myTable" style="max-width:1200px; border: 2rem;"
         class="table mx-auto text-center table-striped table-hover table-bordered" border="1" id="manufacturerTable">
         <thead class="thead-dark">
           <tr>
@@ -106,7 +104,7 @@
           <div class="form-group">
             <input type="button" class="btn btn-success" value="Add" onclick="addmanufacturer();" />
             <input type="button" class="btn btn-success" value="Refresh" />
-           
+
           </div>
           <hr>
         </form>
